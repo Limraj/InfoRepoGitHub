@@ -1,28 +1,25 @@
 package com.gmail.kamil.jarmusik.DataRepoGithub.config;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.gmail.kamil.jarmusik.DataRepoGithub.resource.DataRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 class ObjectMapperConfig {
 
-    @Autowired
-    private ObjectMapper mapper;
-
-    @PostConstruct
-    void setup() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        mapper.setDateFormat(dateFormat);
+    @Bean
+    @Primary
+    ObjectMapper objectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setDateFormat(DateFormatFactory.isoSameDate());
         mapper.addMixIn(DataRepo.class, DataRepoPropertyJson.class);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         if(!mapper.isEnabled(SerializationFeature.INDENT_OUTPUT))
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return mapper;
     }
-
 }

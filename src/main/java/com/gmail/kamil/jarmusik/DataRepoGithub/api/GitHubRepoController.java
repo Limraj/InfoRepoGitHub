@@ -13,12 +13,9 @@ public class GitHubRepoController {
 
     private GitHubRepoPublicService service;
 
-    //Dlaczego wstrzykuję przez konstruktor? To pozwala uniknąć zbyt rozbudowanych klas,
+    //wstrzykuję przez konstruktor, to pomaga utrzymać porządek w klasie,
     //konstruktor nie powinien przyjmować więcej niż 3 argumentów,
-    //to zmusza programistę do lepszego projektowania nowych funkcjonalności,
-    //np przez utworzenie nowego kontrolera;
-    //jeśli wstrzykujemy do pola, to przy rozbudowywaniu kontrolera,
-    //łatwo się zapomnieć;
+    //oraz można ją utworzyć poza kontekstem Springowym;
     @Autowired
     GitHubRepoController(GitHubRepoPublicService service) {
         this.service = service;
@@ -26,6 +23,6 @@ public class GitHubRepoController {
 
     @GetMapping("/{owner}/{repositoryName}")
     public DataRepo getDataRepo(@PathVariable String owner, @PathVariable String repositoryName) {
-        return service.get(owner, repositoryName);
+        return service.downloadDataFor(owner, repositoryName);
     }
 }
