@@ -33,12 +33,14 @@ public class GitHubRepoPublicServiceTest {
 
     private static void loadTestData() throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileInputStream("src/test/resources/test.properties"));
-        owner = properties.getProperty("github.owner");
-        repoName = properties.getProperty("github.repoName");
-        fullName = properties.getProperty("github.repo.fullName");
-        createAt = properties.getProperty("github.repo.createAt");
-        cloneUrl = properties.getProperty("github.repo.cloneUrl");
+        try(FileInputStream fileInputStream = new FileInputStream("src/test/resources/test.properties")) {
+            properties.load(fileInputStream);
+            owner = properties.getProperty("github.owner");
+            repoName = properties.getProperty("github.repoName");
+            fullName = properties.getProperty("github.repo.fullName");
+            createAt = properties.getProperty("github.repo.createAt");
+            cloneUrl = properties.getProperty("github.repo.cloneUrl");
+        }
     }
 
 
