@@ -8,7 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.test.context.TestPropertySource;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -28,21 +27,13 @@ public class GitHubRepoPublicServiceTest {
     public static void setup() throws IOException {
         config = new ConfigTestUnit();
         service = new GitHubRepoPublicServiceImpl(config.getRestTemplate());
-        loadTestData();
+        Properties properties = ConfigTestUnit.loadProperties("src/test/resources/test.properties");
+        owner = properties.getProperty("github.owner");
+        repoName = properties.getProperty("github.repoName");
+        fullName = properties.getProperty("github.repo.fullName");
+        createAt = properties.getProperty("github.repo.createAt");
+        cloneUrl = properties.getProperty("github.repo.cloneUrl");
     }
-
-    private static void loadTestData() throws IOException {
-        Properties properties = new Properties();
-        try(FileInputStream fileInputStream = new FileInputStream("src/test/resources/test.properties")) {
-            properties.load(fileInputStream);
-            owner = properties.getProperty("github.owner");
-            repoName = properties.getProperty("github.repoName");
-            fullName = properties.getProperty("github.repo.fullName");
-            createAt = properties.getProperty("github.repo.createAt");
-            cloneUrl = properties.getProperty("github.repo.cloneUrl");
-        }
-    }
-
 
     @Test
     public void testDownloadDataRepoIsNotEmpty() {
@@ -63,7 +54,7 @@ public class GitHubRepoPublicServiceTest {
         DataRepo dataRepo = service.downloadDataFor(owner,repoName);
         //then:
         Assert.assertEquals(fullName, dataRepo.getFullName());
-        Assert.assertEquals(createAt, config.fromatDateToString(dataRepo.getCreatedAt()));
+        Assert.assertEquals(createAt, config.dateToString(dataRepo.getCreatedAt()));
         Assert.assertEquals(cloneUrl, dataRepo.getCloneUrl());
 
     }

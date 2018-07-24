@@ -4,7 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Date;
+import java.util.Properties;
 
 public class ConfigTestUnit {
 
@@ -20,7 +23,15 @@ public class ConfigTestUnit {
         return restTemplate;
     }
 
-    public String fromatDateToString(Date date) {
+    public String dateToString(Date date) {
         return objectMapper.getDateFormat().format(date);
+    }
+
+    public static Properties loadProperties(String path) throws IOException {
+        Properties properties = new Properties();
+        try(FileInputStream fileInputStream = new FileInputStream(path)) {
+            properties.load(fileInputStream);
+        }
+        return properties;
     }
 }
