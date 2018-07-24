@@ -6,12 +6,10 @@ import org.apache.logging.log4j.util.Strings;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.test.context.TestPropertySource;
 
 import java.io.IOException;
 import java.util.Properties;
 
-@TestPropertySource(locations="classpath:test.properties")
 public class GitHubRepoPublicServiceTest {
 
     private static GitHubRepoPublicService service;
@@ -27,7 +25,7 @@ public class GitHubRepoPublicServiceTest {
     public static void setup() throws IOException {
         config = new ConfigTestUnit();
         service = new GitHubRepoPublicServiceImpl(config.getRestTemplate());
-        Properties properties = ConfigTestUnit.loadProperties("src/test/resources/test.properties");
+        Properties properties = ConfigTestUnit.loadProperties("src/test/resources/data-test-ruby.properties");
         owner = properties.getProperty("github.owner");
         repoName = properties.getProperty("github.repoName");
         fullName = properties.getProperty("github.repo.fullName");
