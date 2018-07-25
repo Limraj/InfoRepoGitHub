@@ -23,7 +23,7 @@ public class SpringExceptionHandler extends ResponseEntityExceptionHandler {
         Map<String,Object> responseBody = new HashMap<>();
         responseBody.put("path",req.getRequestURI());
         responseBody.put("message",ex.getMessage());
-        //responseBody.put("status",ex);
+        responseBody.put("exception",ex.getClass());
         return responseBody;
     }
 
@@ -34,6 +34,7 @@ public class SpringExceptionHandler extends ResponseEntityExceptionHandler {
         responseBody.put("code",status.value());
         responseBody.put("message", "There is no such url defined in the API!");
         responseBody.put("headers",ex.getHeaders());
+        responseBody.put("exception",ex.getClass());
         return new ResponseEntity<Object>(responseBody,status);
     }
 
