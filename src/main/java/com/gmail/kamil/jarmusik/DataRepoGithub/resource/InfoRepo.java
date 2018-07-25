@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class DataRepo {
+public class InfoRepo {
 
     private String fullName;
     private String description;

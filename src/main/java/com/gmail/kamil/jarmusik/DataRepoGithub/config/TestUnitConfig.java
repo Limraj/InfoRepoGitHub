@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
 
-public class ConfigTestUnit {
+public class TestUnitConfig {
 
     private RestTemplate restTemplate;
     private ObjectMapper objectMapper;
 
-    public ConfigTestUnit() {
+    public TestUnitConfig() {
         objectMapper = new ObjectMapperConfig().objectMapper();
         restTemplate = new RestTemplateConfig().restTemplate(new RestTemplateBuilder(), objectMapper);
     }
@@ -27,10 +27,12 @@ public class ConfigTestUnit {
         return objectMapper.getDateFormat().format(date);
     }
 
-    public static Properties loadProperties(String path) throws IOException {
+    public static Properties loadProperties(String path) {
         Properties properties = new Properties();
         try(FileInputStream fileInputStream = new FileInputStream(path)) {
             properties.load(fileInputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return properties;
     }

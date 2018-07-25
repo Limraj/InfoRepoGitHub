@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.Date;
 
 @JsonPropertyOrder({ "fullName", "description", "cloneUrl", "stars", "createdAt" })
-interface DataRepoPropertyJson {
+interface InfoRepoPropertyJson {
 
     @JsonProperty("fullName")
     String getFullName();
