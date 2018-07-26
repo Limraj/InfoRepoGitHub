@@ -20,7 +20,7 @@ public class UnitTestExecutor {
         //given:
         Properties dataTest = PropertiesLoader.loadProperties(pathToDataTest + fileName);
         //when:
-        InfoRepo infoRepo = Executor.builder().dataTest(dataTest).subjectTest(subjectTest).build().execute();
+        InfoRepo infoRepo = SubjectTest.builder().dataTest(dataTest).subjectTest(subjectTest).build().execute();
         //then:
         verifier.accept(infoRepo, dataTest);
     }
@@ -29,7 +29,7 @@ public class UnitTestExecutor {
         //given:
         Properties dataTest = PropertiesLoader.loadProperties(pathToDataTest + fileName);
         //when:
-        InfoRepo infoRepo = Executor.builder().dataTest(dataTest).subjectTest(subjectTest).build().execute();
+        InfoRepo infoRepo = SubjectTest.builder().dataTest(dataTest).subjectTest(subjectTest).build().execute();
         //then:
         verifier.accept(infoRepo);
     }
