@@ -12,12 +12,12 @@ import java.util.List;
 
 @Service
 @Qualifier("ownerAsOrganization")
-class GitHubRepoPublicByOrganizationService implements GitHubRepoService {
+class InfoRepoPublicByOrganizationService implements InfoRepoService {
 
     private RestTemplate restTemplate;
 
     @Autowired
-    GitHubRepoPublicByOrganizationService(RestTemplate restTemplate) {
+    InfoRepoPublicByOrganizationService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

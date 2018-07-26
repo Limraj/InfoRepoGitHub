@@ -5,7 +5,7 @@ import com.gmail.kamil.jarmusik.DataRepoGithub.resource.InfoRepo;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.client.HttpClientErrorException;
-import tool.TestSetup;
+import tool.AssertsSetup;
 import tool.UnitTestExecutor;
 import tool.subject.GetInfoRepo;
 import tool.subject.GetInfoRepos;
@@ -15,48 +15,50 @@ import java.util.Properties;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-public class GitHubRepoPublicByUserServiceTest {
+import static tool.UnitTestExecutor.executeTest;
 
-    private static UnitTestExecutor unitTestExecutor;
-    private static Consumer<InfoRepo> assertsNotEmpty;
-    private static BiConsumer<InfoRepo, Properties> assertsEqualsValue;
+public class InfoRepoPublicByUserServiceTest {
+
+    private static Consumer<InfoRepo> assertsByNotEmpty;
+    private static BiConsumer<InfoRepo, Properties> assertsByEqualsToDataExpected;
     private static SubjectTestGetInfo subjectTestGetInfoRepos;
     private static SubjectTestGetInfo subjectTestGetInfoRepo;
 
     @BeforeClass
     public static void setup() {
+        UnitTestExecutor.pathToDataExpected =  "src/test/resources/service/";
         TestUnitConfig  config = new TestUnitConfig();
-        GitHubRepoService service = new GitHubRepoPublicByUserService(config.getRestTemplate());
-        unitTestExecutor =  new UnitTestExecutor("src/test/resources/service/");
-        assertsNotEmpty = TestSetup.assertsNotEmpty();
-        assertsEqualsValue = TestSetup.assertsEqualsValue(config);
+        assertsByNotEmpty = AssertsSetup.assertsByNotEmpty();
+        assertsByEqualsToDataExpected = AssertsSetup.assertsByEqualsToDataExpected(config);
+
+        InfoRepoService service = new InfoRepoPublicByUserService(config.getRestTemplate());
         subjectTestGetInfoRepo = new GetInfoRepo(service::getInfoRepo);
         subjectTestGetInfoRepos = new GetInfoRepos(service::getInfoRepos);
     }
 
     @Test
     public void testGetInfoRepoThenNotEmpty() {
-        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::execute, assertsNotEmpty);
+        executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::execute, assertsByNotEmpty);
     }
 
     @Test
     public void testGetInfoRepoThenEquals() {
-        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::execute, assertsEqualsValue);
+        executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::execute, assertsByEqualsToDataExpected);
     }
 
     @Test
     public void testGetInfoReposThenNotEmpty() {
-        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsNotEmpty);
+        executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsByNotEmpty);
     }
 
     @Test
     public void testGetInfoReposThenEquals() {
-        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsEqualsValue);
+        executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsByEqualsToDataExpected);
     }
 
     @Test(expected = HttpClientErrorException.class)
     public void testGetInfoReposForOrganizationThenNotFound() {
-        unitTestExecutor.executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::execute, assertsEqualsValue);
+        executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::execute, assertsByEqualsToDataExpected);
     }
 
 }

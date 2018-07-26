@@ -10,9 +10,9 @@ import java.util.function.Consumer;
 import static org.apache.logging.log4j.util.Strings.isNotBlank;
 import static org.junit.Assert.*;
 
-public class TestSetup {
+public class AssertsSetup {
 
-    public static Consumer<InfoRepo> assertsNotEmpty() {
+    public static Consumer<InfoRepo> assertsByNotEmpty() {
         return infoRepo -> {
             assertNotNull(infoRepo);
             assertTrue(isNotBlank(infoRepo.getCloneUrl()));
@@ -21,7 +21,7 @@ public class TestSetup {
         };
     }
 
-    public static BiConsumer<InfoRepo, Properties> assertsEqualsValue(TestUnitConfig config) {
+    public static BiConsumer<InfoRepo, Properties> assertsByEqualsToDataExpected(TestUnitConfig config) {
         return new BiConsumer<InfoRepo, Properties>() {
             TestUnitConfig config;
 
@@ -31,10 +31,10 @@ public class TestSetup {
             }
 
             @Override
-            public void accept(InfoRepo infoRepo, Properties dataTest) {
-                String fullName = dataTest.getProperty("github.repo.fullName");
-                String createAt = dataTest.getProperty("github.repo.createAt");
-                String cloneUrl = dataTest.getProperty("github.repo.cloneUrl");
+            public void accept(InfoRepo infoRepo, Properties dataExpected) {
+                String fullName = dataExpected.getProperty("github.repo.fullName");
+                String createAt = dataExpected.getProperty("github.repo.createAt");
+                String cloneUrl = dataExpected.getProperty("github.repo.cloneUrl");
                 assertNotNull(infoRepo);
                 assertEquals(fullName, infoRepo.getFullName());
                 assertEquals(createAt, config.dateToString(infoRepo.getCreatedAt()));
