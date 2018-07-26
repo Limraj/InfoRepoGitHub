@@ -7,7 +7,7 @@ import java.util.Properties;
 import java.util.function.BiFunction;
 
 @Builder
-public class SubjectTest {
+public class SubjectTestExecutor {
 
     Properties dataTest;
     BiFunction<String, String, InfoRepo> subjectTest;
