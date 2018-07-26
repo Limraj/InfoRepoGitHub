@@ -15,7 +15,7 @@ public class GetInfoRepos implements SubjectTestGetInfo {
     }
 
     @Override
-    public InfoRepo subject(String owner, String repoName) {
+    public InfoRepo execute(String owner, String repoName) {
         List<InfoRepo> infoRepos = subjectTest.apply(owner);
         return InfoRepoSelector.selectInfoRepo(owner, repoName, infoRepos);
     }

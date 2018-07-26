@@ -13,7 +13,7 @@ public class GetInfoRepo implements SubjectTestGetInfo {
     }
 
     @Override
-    public InfoRepo subject(String owner, String repoName) {
+    public InfoRepo execute(String owner, String repoName) {
         return subjectTest.apply(owner, repoName);
     }
 }

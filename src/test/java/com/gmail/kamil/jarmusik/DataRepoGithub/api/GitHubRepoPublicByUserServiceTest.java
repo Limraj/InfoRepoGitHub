@@ -35,28 +35,28 @@ public class GitHubRepoPublicByUserServiceTest {
     }
 
     @Test
-    public void testGetInfoRepoIsNotEmpty() {
-        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::subject, assertsNotEmpty);
+    public void testGetInfoRepoThenNotEmpty() {
+        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::execute, assertsNotEmpty);
     }
 
     @Test
-    public void testGetInfoRepo() {
-        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::subject, assertsEqualsValue);
+    public void testGetInfoRepoThenEquals() {
+        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::execute, assertsEqualsValue);
     }
 
     @Test
-    public void testGetInfoReposIsNotEmpty() {
-        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::subject, assertsNotEmpty);
+    public void testGetInfoReposThenNotEmpty() {
+        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsNotEmpty);
     }
 
     @Test
-    public void testGetInfoRepos() {
-        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::subject, assertsEqualsValue);
+    public void testGetInfoReposThenEquals() {
+        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsEqualsValue);
     }
 
     @Test(expected = HttpClientErrorException.class)
     public void testGetInfoReposForOrganizationThenNotFound() {
-        unitTestExecutor.executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::subject, assertsEqualsValue);
+        unitTestExecutor.executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::execute, assertsEqualsValue);
     }
 
 }

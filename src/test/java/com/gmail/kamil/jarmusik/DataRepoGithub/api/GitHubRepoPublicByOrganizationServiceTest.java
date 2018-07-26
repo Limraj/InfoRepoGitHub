@@ -38,33 +38,33 @@ public class GitHubRepoPublicByOrganizationServiceTest {
     }
 
     @Test
-    public void testGetInfoRepoIsNotEmpty() {
-        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepo::subject, assertsNotEmpty);
+    public void testGetInfoRepoThenNotEmpty() {
+        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepo::execute, assertsNotEmpty);
     }
 
     @Test
-    public void testGetInfoRepo() {
-        unitTestExecutor.executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepo::subject, assertsEqualsValue);
+    public void testGetInfoRepoThenEquals() {
+        unitTestExecutor.executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepo::execute, assertsEqualsValue);
     }
 
     @Test
     public void testGetInfoReposThenNotEmpty() {
-        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::subject, assertsNotEmpty);
+        unitTestExecutor.executeTestRepoIsNotEmpty("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::execute, assertsNotEmpty);
     }
 
     @Test
-    public void testGetInfoRepos() {
-        unitTestExecutor.executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::subject, assertsEqualsValue);
+    public void testGetInfoReposThenEquals() {
+        unitTestExecutor.executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::execute, assertsEqualsValue);
     }
 
     @Test(expected = HttpClientErrorException.class)
     public void testGetInfoReposForUserThenNotFound() {
-        unitTestExecutor.executeTest("limjar-user-figury.properties", subjectTestGetInfoRepos::subject, assertsEqualsValue);
+        unitTestExecutor.executeTest("limjar-user-figury.properties", subjectTestGetInfoRepos::execute, assertsEqualsValue);
     }
 
     @Test
     public void testGetInfoReposForUserThenOk() {
-        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::subject, assertsEqualsValue);
+        unitTestExecutor.executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsEqualsValue);
     }
 
 }
