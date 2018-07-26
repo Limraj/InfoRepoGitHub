@@ -1,5 +1,6 @@
 package com.gmail.kamil.jarmusik.DataRepoGithub.api;
 
+
 import com.gmail.kamil.jarmusik.DataRepoGithub.resource.InfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-@Qualifier("byOrganization")
+@Qualifier("ownerAsOrganization")
 class GitHubRepoPublicByOrganizationService implements GitHubRepoService {
 
     private RestTemplate restTemplate;

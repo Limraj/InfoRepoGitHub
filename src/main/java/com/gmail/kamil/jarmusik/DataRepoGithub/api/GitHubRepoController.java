@@ -16,10 +16,10 @@ public class GitHubRepoController {
     private GitHubRepoService userService;
     //wstrzykuję przez konstruktor, to pomaga utrzymać porządek w klasie,
     //konstruktor nie powinien przyjmować więcej niż 3 argumentów,
-    //oraz można ją utworzyć poza kontekstem Springowym;
+    //oraz można ją utworzyć poza kontekstem Springowym i nie wykorzystując refleksji;
     @Autowired
-    GitHubRepoController(@Qualifier("byOrganization") GitHubRepoService orgService,
-                         @Qualifier("byUser") GitHubRepoService userService) {
+    GitHubRepoController(@Qualifier("ownerAsOrganization") GitHubRepoService orgService,
+                         @Qualifier("ownerAsUser") GitHubRepoService userService) {
         this.orgService = orgService;
         this.userService = userService;
     }

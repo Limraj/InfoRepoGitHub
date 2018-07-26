@@ -8,12 +8,11 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
-public class InfoRepoUtilTest {
+public class InfoRepoSelectorTest {
 
     private static List<InfoRepo> repos;
     private static TestUnitConfig config;
@@ -56,14 +55,14 @@ public class InfoRepoUtilTest {
         String owner = "ruby";
         String repoName = "b.r-l.o";
         //when:
-        Optional<InfoRepo> infoRepo = InfoRepoUtil.selectInfoRepoByFullName(InfoRepoUtil.createFullName(owner,repoName), repos);
+        InfoRepo infoRepo = InfoRepoSelector.selectInfoRepo(owner, repoName, repos);
         //then:
-        assertTrue(infoRepo.isPresent());
-        assertEquals("ruby/b.r-l.o", infoRepo.get().getFullName());
-        assertEquals( config.dateToString(new Date()), config.dateToString(infoRepo.get().getCreatedAt()));
-        assertEquals("cloneUrl2", infoRepo.get().getCloneUrl());
-        assertEquals("anything2", infoRepo.get().getDescription());
-        assertEquals(22, infoRepo.get().getStars());
+        assertNotNull(infoRepo);
+        assertEquals("ruby/b.r-l.o", infoRepo.getFullName());
+        assertEquals( config.dateToString(new Date()), config.dateToString(infoRepo.getCreatedAt()));
+        assertEquals("cloneUrl2", infoRepo.getCloneUrl());
+        assertEquals("anything2", infoRepo.getDescription());
+        assertEquals(22, infoRepo.getStars());
     }
 
     @Test
@@ -72,14 +71,14 @@ public class InfoRepoUtilTest {
         String owner = "Limraj";
         String repoName = "figury";
         //when:
-        Optional<InfoRepo> infoRepo = InfoRepoUtil.selectInfoRepoByFullName(InfoRepoUtil.createFullName(owner,repoName), repos);
+        InfoRepo infoRepo = InfoRepoSelector.selectInfoRepo(owner, repoName, repos);
         //then:
-        assertTrue(infoRepo.isPresent());
-        assertEquals("Limraj/figury", infoRepo.get().getFullName());
-        assertEquals( config.dateToString(new Date()), config.dateToString(infoRepo.get().getCreatedAt()));
-        assertEquals("cloneUrl1", infoRepo.get().getCloneUrl());
-        assertEquals("anything1", infoRepo.get().getDescription());
-        assertEquals(11, infoRepo.get().getStars());
+        assertNotNull(infoRepo);
+        assertEquals("Limraj/figury", infoRepo.getFullName());
+        assertEquals( config.dateToString(new Date()), config.dateToString(infoRepo.getCreatedAt()));
+        assertEquals("cloneUrl1", infoRepo.getCloneUrl());
+        assertEquals("anything1", infoRepo.getDescription());
+        assertEquals(11, infoRepo.getStars());
     }
 
     @Test
@@ -88,14 +87,14 @@ public class InfoRepoUtilTest {
         String owner = "ruby";
         String repoName = "rubyspec.github.io";
         //when:
-        Optional<InfoRepo> infoRepo = InfoRepoUtil.selectInfoRepoByFullName(InfoRepoUtil.createFullName(owner,repoName), repos);
+        InfoRepo infoRepo = InfoRepoSelector.selectInfoRepo(owner, repoName, repos);
         //then:
-        assertTrue(infoRepo.isPresent());
-        assertEquals("ruby/rubyspec.github.io", infoRepo.get().getFullName());
-        assertEquals( config.dateToString(new Date()), config.dateToString(infoRepo.get().getCreatedAt()));
-        assertEquals("cloneUrl3", infoRepo.get().getCloneUrl());
-        assertEquals("anything3", infoRepo.get().getDescription());
-        assertEquals(33, infoRepo.get().getStars());
+        assertNotNull(infoRepo);
+        assertEquals("ruby/rubyspec.github.io", infoRepo.getFullName());
+        assertEquals( config.dateToString(new Date()), config.dateToString(infoRepo.getCreatedAt()));
+        assertEquals("cloneUrl3", infoRepo.getCloneUrl());
+        assertEquals("anything3", infoRepo.getDescription());
+        assertEquals(33, infoRepo.getStars());
     }
 
     @Test
@@ -104,7 +103,7 @@ public class InfoRepoUtilTest {
         String owner = "ruby";
         String repoName = "rubyspec.github.io";
         //when:
-        String fullName = InfoRepoUtil.createFullName(owner, repoName);
+        String fullName = InfoRepoSelector.createFullName(owner, repoName);
         assertEquals("ruby/rubyspec.github.io", fullName);
     }
 }
