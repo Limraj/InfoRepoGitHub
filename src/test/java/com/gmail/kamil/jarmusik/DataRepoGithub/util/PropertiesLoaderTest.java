@@ -9,10 +9,9 @@ import static org.junit.Assert.assertEquals;
 public class PropertiesLoaderTest {
 
     @Test
-    public void loadProperties() {
+    public void testLoadPropertiesThenLoadingCorrectData() {
         //when:
         Properties dataTest = PropertiesLoader.loadProperties("src/test/resources/loader/loader-test.properties");
-        //then:
         String owner =  dataTest.getProperty("github.owner");
         String repoName =  dataTest.getProperty("github.repoName");
         String fullName = dataTest.getProperty("github.repo.fullName");
@@ -20,7 +19,7 @@ public class PropertiesLoaderTest {
         String cloneUrl = dataTest.getProperty("github.repo.cloneUrl");
         String stars = dataTest.getProperty("github.repo.stars");
         String createAt = dataTest.getProperty("github.repo.createAt");
-
+        //then:
         assertEquals(owner, "ruby");
         assertEquals(repoName, "rubyspec.github.io");
         assertEquals(fullName, "ruby/rubyspec.github.io");

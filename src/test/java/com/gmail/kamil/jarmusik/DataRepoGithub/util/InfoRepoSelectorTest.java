@@ -50,7 +50,7 @@ public class InfoRepoSelectorTest {
     }
 
     @Test
-    public void selectInfoRepoByFullName1() {
+    public void testSelectInfoRepoByOwnerAndRepoNameThenEqualsExpectedValue1Case() {
         //given:
         String owner = "ruby";
         String repoName = "b.r-l.o";
@@ -66,7 +66,7 @@ public class InfoRepoSelectorTest {
     }
 
     @Test
-    public void selectInfoRepoByFullName2() {
+    public void testSelectInfoRepoByOwnerAndRepoNameThenEqualsExpectedValue2Case() {
         //given:
         String owner = "Limraj";
         String repoName = "figury";
@@ -82,7 +82,7 @@ public class InfoRepoSelectorTest {
     }
 
     @Test
-    public void selectInfoRepoByFullName3() {
+    public void testSelectInfoRepoByOwnerAndRepoNameThenEqualsExpectedValue3Case() {
         //given:
         String owner = "ruby";
         String repoName = "rubyspec.github.io";
@@ -98,7 +98,7 @@ public class InfoRepoSelectorTest {
     }
 
     @Test
-    public void createFullName() {
+    public void testCreateFullNameThenEqualsExpectedValue() {
         //given:
         String owner = "ruby";
         String repoName = "rubyspec.github.io";
