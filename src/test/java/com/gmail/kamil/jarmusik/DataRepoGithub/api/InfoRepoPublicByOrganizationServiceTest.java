@@ -43,7 +43,7 @@ public class InfoRepoPublicByOrganizationServiceTest {
     }
 
     @Test
-    public void testGetInfoRepoThenEquals() {
+    public void testGetInfoRepoThenEqualsToDataExpected() {
         executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepo::execute, assertsByEqualsToDataExpected);
     }
 
@@ -53,7 +53,7 @@ public class InfoRepoPublicByOrganizationServiceTest {
     }
 
     @Test
-    public void testGetInfoReposThenEquals() {
+    public void testGetInfoReposThenEqualsToDataExpected() {
         executeTest("ruby-organization-rubyspec.github.io.properties", subjectTestGetInfoRepos::execute, assertsByEqualsToDataExpected);
     }
 

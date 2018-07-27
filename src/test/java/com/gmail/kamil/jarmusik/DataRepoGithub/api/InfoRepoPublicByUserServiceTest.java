@@ -42,7 +42,7 @@ public class InfoRepoPublicByUserServiceTest {
     }
 
     @Test
-    public void testGetInfoRepoThenEquals() {
+    public void testGetInfoRepoThenEqualsToDataExpected() {
         executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepo::execute, assertsByEqualsToDataExpected);
     }
 
@@ -52,7 +52,7 @@ public class InfoRepoPublicByUserServiceTest {
     }
 
     @Test
-    public void testGetInfoReposThenEquals() {
+    public void testGetInfoReposThenEqualsToDataExpected() {
         executeTest("ruby-user-b.r-l.o.properties", subjectTestGetInfoRepos::execute, assertsByEqualsToDataExpected);
     }
 

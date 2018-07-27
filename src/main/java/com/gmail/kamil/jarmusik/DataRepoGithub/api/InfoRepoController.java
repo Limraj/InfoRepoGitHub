@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/repositories")
 public class InfoRepoController {
@@ -38,6 +40,20 @@ public class InfoRepoController {
     @CacheEvict(value="infoRepo", allEntries=true)
     public InfoRepo getInfoRepoByUser(@PathVariable String owner, @PathVariable String repoName) {
         return userService.getInfoRepo(owner, repoName);
+    }
+
+    @GetMapping("/{owner}")
+    @Cacheable("infoRepo")
+    @CacheEvict(value="infoRepo", allEntries=true)
+    public List<InfoRepo> getInfoReposByOrganization(@PathVariable String owner) {
+        return orgService.getInfoRepos(owner);
+    }
+
+    @GetMapping("/user/{owner}")
+    @Cacheable("infoRepo")
+    @CacheEvict(value="infoRepo", allEntries=true)
+    public List<InfoRepo> getInfoRepsoByUser(@PathVariable String owner) {
+        return userService.getInfoRepos(owner);
     }
 
 }
