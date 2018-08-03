@@ -1,7 +1,7 @@
 package com.gmail.kamil.jarmusik.DataRepoGithub.repo.info.domain
 
 import groovy.transform.CompileStatic
-import Tool.PropertiesLoader
+import tool.PropertiesLoader
 
 import java.text.DateFormat
 
