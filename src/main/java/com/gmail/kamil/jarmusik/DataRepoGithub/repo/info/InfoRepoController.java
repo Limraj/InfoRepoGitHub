@@ -2,9 +2,10 @@ package com.gmail.kamil.jarmusik.DataRepoGithub.repo.info;
 
 import com.gmail.kamil.jarmusik.DataRepoGithub.infrastructure.metrics.logging.LogForBeanSpring;
 import com.gmail.kamil.jarmusik.DataRepoGithub.repo.info.domain.InfoRepo;
-import com.gmail.kamil.jarmusik.DataRepoGithub.repo.info.domain.InfoRepoPublicByOrganizationFacade;
-import com.gmail.kamil.jarmusik.DataRepoGithub.repo.info.domain.InfoRepoPublicByUserFacade;
+import com.gmail.kamil.jarmusik.DataRepoGithub.repo.info.domain.InfoRepoPublic;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +23,14 @@ import java.util.logging.Level;
 @RequestMapping("/repositories")
 public class InfoRepoController {
 
-    private InfoRepoPublicByOrganizationFacade orgFacade;
-    private InfoRepoPublicByUserFacade userFacade;
+    private InfoRepoPublic orgFacade;
+    private InfoRepoPublic userFacade;
     //wstrzykuję przez konstruktor, to pomaga utrzymać porządek w klasie,
     //konstruktor nie powinien przyjmować więcej niż 3 argumentów,
     //oraz można ją utworzyć poza kontekstem Springowym i nie wykorzystując refleksji;
-    public InfoRepoController(InfoRepoPublicByOrganizationFacade orgFacade,
-                       InfoRepoPublicByUserFacade userFacade) {
+    @Autowired
+    public InfoRepoController(@Qualifier("byOrganization")InfoRepoPublic orgFacade,
+                              @Qualifier("byUser")InfoRepoPublic userFacade) {
         this.orgFacade = orgFacade;
         this.userFacade = userFacade;
     }
