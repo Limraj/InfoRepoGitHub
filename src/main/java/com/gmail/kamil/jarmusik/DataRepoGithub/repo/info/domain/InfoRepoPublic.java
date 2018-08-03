@@ -14,10 +14,10 @@ public abstract class InfoRepoPublic {
         this.restTemplate = restTemplate;
     }
 
-    public InfoRepo getInfoRepo(String organization, String repoName) {
-        requireNonNull(organization, repoName);
-        return restTemplate.getForObject("https://api.github.com/repos/{organization}/{repoName}", InfoRepo.class, organization, repoName);
+    public InfoRepo getInfoRepo(String owner, String repoName) {
+        requireNonNull(owner, repoName);
+        return restTemplate.getForObject("https://api.github.com/repos/{owner}/{repoName}", InfoRepo.class, owner, repoName);
     }
 
-    public abstract List<InfoRepo> getInfoRepos(String organization);
+    public abstract List<InfoRepo> getInfoRepos(String owner);
 }
