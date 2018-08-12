@@ -7,7 +7,7 @@ import spock.lang.Unroll
 
 class InfoRepoPublicByUserSpec extends Specification implements SampleInfoRepo {
 
-    InfoRepoPublicByUserFacade subject = new TestUnitConfiguration().infoRepoPublicByUserFacade()
+    def subject = testUnitConfiguration.infoRepoPublicByUserFacade()
 
     @Unroll
     def "test getInfoRepo is OK"() {
@@ -31,15 +31,14 @@ class InfoRepoPublicByUserSpec extends Specification implements SampleInfoRepo {
         error.properties.get("statusCode") == statusCode
 
         where:
-        owner    | repoName             | statusCode
-        "Limraj" | "dicegame2"          | HttpStatus.NOT_FOUND
-        "Limraj1" | "dicegame"          | HttpStatus.NOT_FOUND
+        owner        | repoName          | statusCode
+        "Limraj"     | "dicegamsdfgagwe" | HttpStatus.NOT_FOUND
+        "Limrasdfj1" | "dicegame"        | HttpStatus.NOT_FOUND
 
     }
 
     @Unroll
     def "test getInfoRepos is OK"() {
-
         when:
         List<InfoRepo> repos = subject.getInfoRepos(owner)
 

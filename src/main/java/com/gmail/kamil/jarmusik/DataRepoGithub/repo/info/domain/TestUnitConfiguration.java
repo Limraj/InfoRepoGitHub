@@ -8,26 +8,26 @@ import java.text.DateFormat;
 
 public class TestUnitConfiguration {
 
-    InfoRepoConfiguration configuration;
+    private ObjectMapper objectMapper;
+    private RestTemplate restTemplate;
 
     public TestUnitConfiguration() {
-        this.configuration =  new InfoRepoConfiguration();
+
+        InfoRepoConfiguration configuration =  new InfoRepoConfiguration();
+        objectMapper = configuration.objectMapper();
+        restTemplate = configuration.restTemplate(new RestTemplateBuilder(), objectMapper);
     }
 
     public InfoRepoPublicByOrganizationFacade infoRepoPublicByOrganizationFacade() {
-        ObjectMapper objectMapper = configuration.objectMapper();
-        RestTemplate restTemplate = configuration.restTemplate(new RestTemplateBuilder(), objectMapper);
         return new InfoRepoPublicByOrganizationFacade(restTemplate);
     }
 
     public InfoRepoPublicByUserFacade infoRepoPublicByUserFacade() {
-        ObjectMapper objectMapper = configuration.objectMapper();
-        RestTemplate restTemplate = configuration.restTemplate(new RestTemplateBuilder(), objectMapper);
         return new InfoRepoPublicByUserFacade(restTemplate);
     }
 
     public DateFormat getDateFormat() {
-        return configuration.objectMapper().getDateFormat();
+        return objectMapper.getDateFormat();
     }
 
 
