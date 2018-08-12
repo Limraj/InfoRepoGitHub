@@ -50,10 +50,10 @@ class InfoRepoConfiguration {
         return new InfoRepoPublicByUserFacade(restTemplate);
     }
 
-    static DateFormat iso() {
+    private static DateFormat iso() {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
     }
-    static DateFormat isoSameDate() {
+    private static DateFormat isoSameDate() {
         return new SimpleDateFormat("yyyy-MM-dd");
     }
 }

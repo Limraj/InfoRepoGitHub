@@ -7,7 +7,7 @@ import spock.lang.Unroll
 
 class InfoRepoPublicByOrganizationSpec extends Specification implements SampleInfoRepo {
 
-    InfoRepoPublicByOrganizationFacade subject = new TestUnitConfiguration().infoRepoPublicByOrganizationFacade()
+    def subject = testUnitConfiguration.infoRepoPublicByOrganizationFacade()
 
     @Unroll
     def "test getInfoRepo is OK"() {
@@ -33,15 +33,14 @@ class InfoRepoPublicByOrganizationSpec extends Specification implements SampleIn
         error.properties.get("statusCode") == statusCode
 
         where:
-        owner     | repoName    | statusCode
-        "Limraj"  | "dicegame2" | HttpStatus.NOT_FOUND
-        "Limraj1" | "dicegame"  | HttpStatus.NOT_FOUND
+        owner        | repoName        | statusCode
+        "Limraj"     | "dicdsfgfdgds2" | HttpStatus.NOT_FOUND
+        "Limradgsdg" | "dicegame"      | HttpStatus.NOT_FOUND
 
     }
 
     @Unroll
     def "test getInfoRepos is OK"() {
-
         when:
         List<InfoRepo> repos = subject.getInfoRepos(owner)
 
@@ -58,7 +57,6 @@ class InfoRepoPublicByOrganizationSpec extends Specification implements SampleIn
 
     @Unroll
     def "test getInfoRepos thrown HttpClientErrorException with HttpStatus.NOT_FOUND"() {
-
         when:
         subject.getInfoRepos(owner)
 
@@ -67,8 +65,8 @@ class InfoRepoPublicByOrganizationSpec extends Specification implements SampleIn
         error.properties.get("statusCode") == statusCode
 
         where:
-        owner    | statusCode
-        "Limraj" | HttpStatus.NOT_FOUND
-        "rubyaf" | HttpStatus.NOT_FOUND
+        owner      | statusCode
+        "Limraj"   | HttpStatus.NOT_FOUND
+        "rubyasdf" | HttpStatus.NOT_FOUND
     }
 }

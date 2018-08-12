@@ -29,7 +29,6 @@ public class InfoRepo {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getFullName(), getCloneUrl(), getCreatedAt());
     }
 }

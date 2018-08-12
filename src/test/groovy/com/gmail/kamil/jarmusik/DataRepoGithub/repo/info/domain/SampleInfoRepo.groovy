@@ -8,7 +8,7 @@ import java.text.DateFormat
 @CompileStatic
 trait SampleInfoRepo {
 
-    static private String pathToDataExpected =  "src/test/resources/service/"
+    static TestUnitConfiguration testUnitConfiguration = new TestUnitConfiguration()
 
     InfoRepo limrajUserFigury = createInfoRepo("limraj-user-figury.properties")
     InfoRepo limrajUserDicegame = createInfoRepo("limraj-user-dicegame.properties")
@@ -17,8 +17,9 @@ trait SampleInfoRepo {
     InfoRepo rubyUserBrLo = createInfoRepo("ruby-user-b.r-l.o.properties")
 
     static private InfoRepo createInfoRepo(String fileName) {
+        String pathToDataExpected =  "src/test/resources/service/"
         Properties properties = PropertiesLoader.load(pathToDataExpected + fileName)
-        DateFormat format = new InfoRepoConfiguration().objectMapper().getDateFormat()
+        DateFormat format = testUnitConfiguration.getDateFormat()
         Date createAt = format.parse(properties.getProperty("github.repo.createAt"))
         int stars = Integer.valueOf(properties.getProperty("github.repo.stars"))
         return InfoRepo.builder()
