@@ -1,3 +1,3 @@
 # InfoRepoGitHub
 Kamil Jarmusik
-SpringBoot-PortsAdaptersHexagonale-Spock-Groovy-Lombok
+SpringBoot-PortsAdaptersHexagonale-SpockGroovy-Lombok
