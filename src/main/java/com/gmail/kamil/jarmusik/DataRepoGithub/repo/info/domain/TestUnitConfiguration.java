@@ -10,20 +10,21 @@ public class TestUnitConfiguration {
 
     private ObjectMapper objectMapper;
     private RestTemplate restTemplate;
+    private InfoRepoConfiguration configuration;
 
     public TestUnitConfiguration() {
 
-        InfoRepoConfiguration configuration =  new InfoRepoConfiguration();
+        configuration =  new InfoRepoConfiguration();
         objectMapper = configuration.objectMapper();
         restTemplate = configuration.restTemplate(new RestTemplateBuilder(), objectMapper);
     }
 
     public InfoRepoPublicByOrganizationFacade infoRepoPublicByOrganizationFacade() {
-        return new InfoRepoPublicByOrganizationFacade(restTemplate);
+        return configuration.infoRepoPublicByOrganizationFacade(restTemplate);
     }
 
     public InfoRepoPublicByUserFacade infoRepoPublicByUserFacade() {
-        return new InfoRepoPublicByUserFacade(restTemplate);
+        return configuration.infoRepoPublicByUserFacade(restTemplate);
     }
 
     public DateFormat getDateFormat() {
