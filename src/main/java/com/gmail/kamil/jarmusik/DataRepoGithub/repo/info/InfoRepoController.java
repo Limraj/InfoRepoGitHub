@@ -38,7 +38,7 @@ public class InfoRepoController {
     @GetMapping("/{owner}/{repoName}")
     @Cacheable("infoRepo")
     @CacheEvict(value="infoRepo", allEntries=true)
-    public InfoRepo getInfoRepoByOrganization(@PathVariable String owner, @PathVariable String repoName) {
+    public InfoRepo getInfoRepo(@PathVariable String owner, @PathVariable String repoName) {
         return orgFacade.getInfoRepo(owner, repoName);
     }
 
