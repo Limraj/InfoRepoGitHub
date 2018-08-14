@@ -19,7 +19,7 @@ import java.util.Map;
 @ControllerAdvice
 public class SpringExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private Environment environment;
+    private final Environment environment;
 
     @Autowired
     public SpringExceptionHandler(Environment environment) {
