@@ -1,6 +1,6 @@
 package com.gmail.jarmusik.kamil.DataRepoGithub.info.domain;
 
-import com.gmail.kamil.jarmusik.DataRepoGithub.infrastructure.metrics.logging.LogForBeanSpring;
+import com.gmail.jarmusik.kamil.DataRepoGithub.infrastructure.metrics.logging.LogForBeanSpring;
 import org.springframework.web.client.RestTemplate;
 
 import static java.util.Objects.requireNonNull;

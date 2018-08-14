@@ -1,6 +1,8 @@
 package com.gmail.kamil.jarmusik.DataRepoGithub.repo.info.domain
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.gmail.jarmusik.kamil.DataRepoGithub.info.domain.InfoRepo
+import com.gmail.jarmusik.kamil.DataRepoGithub.info.domain.TestUnitConfiguration
 import groovy.transform.CompileStatic
 import tool.JsonDeserializer
 
